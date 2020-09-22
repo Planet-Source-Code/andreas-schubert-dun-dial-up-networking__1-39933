@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+
+<TITLE>Dial-up networking by A.Schubert</TITLE>
+
+
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" BACKGROUND="./Background.gif" TEXT="#FFFFFF" LINK="#FF9900" VLINK="#3366FF" TOPMARGIN=0 LEFTMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0>
+    <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=728 NOF=LY>
+        <TR VALIGN=TOP ALIGN=LEFT>
+            <TD WIDTH=14 HEIGHT=21><IMG SRC="./clearpixel.gif" WIDTH=14 HEIGHT=1 BORDER=0></TD>
+            <TD WIDTH=714><IMG SRC="./clearpixel.gif" WIDTH=714 HEIGHT=1 BORDER=0></TD>
+        </TR>
+        <TR VALIGN=TOP ALIGN=LEFT>
+            <TD></TD>
+            <TD WIDTH=714>
+                <P ALIGN=CENTER><B><FONT SIZE="+3"><U>Dial-up networking for Visual Basic</U></FONT></B></P>
+                <P ALIGN=JUSTIFY>provided by: <B><I><FONT SIZE="+2"><U>Andreas Schubert (eMail: </U></FONT></I></B><A HREF="mailto:andy@andreas-schubert.net"><B><I><FONT SIZE="+2"><U>andy@andreas-schubert.net</U></FONT></I></B></A><B><I><FONT SIZE="+2"><U>)</U></FONT></I></B></P>
+                <P ALIGN=JUSTIFY>Recently many people asked about using dial-up networking in their programs.</P>
+                <P ALIGN=JUSTIFY>Fact is, there is not much information available about this, and it seemed to me that the questions were not answered sufficient enough. With my last project I had to deal with this problems too, so I decided to write a nifty class for dealing with dun.</P>
+                <P ALIGN=JUSTIFY>Dial-up networking with VB is pretty easy, once you have translated all the required data structures for the api-functions (which I have done for you). The remaining part mostly consists of calling some functions and handling return values. For this, I created the small sample project.</P>
+                <P ALIGN=JUSTIFY>You have the royalty-free right to use the source provided with this article in your applications. &nbsp; &nbsp; </P>
+                <P ALIGN=JUSTIFY>You may also distribute the source, as long as you leave the original disclaimer unaltered.</P>
+                <P ALIGN=JUSTIFY>I take no responsibility for any damage through the use of my code!</P>
+                <P ALIGN=JUSTIFY>I would be glad if you dropped me a note in which project you used it. </P>
+                <P ALIGN=JUSTIFY>Also, if you got questions, change something or find a bug, please send me a message and a copy of your altered code to <A HREF="mailto:andy@andreas-schubert.net">andy@andreas-schubert.net</A></P>
+                <P ALIGN=JUSTIFY>Please visit my new homepage at <A HREF="http://www.andreas-schubert.net">www.andreas-schubert.net</A>. It will get completed in a view days.</P>
+		<P ALIGN=JUSTIFY>I am truly sorry for the -not so long - sample project, but I've got loads of work to do.</P>
+		<P ALIGN=JUSTIFY>So, If you have any questions, feel free to send me a mail, I will try to answer all questions!</P>
+                <P ALIGN=JUSTIFY>So much for this. Now on with dial-up networking:</P>
+                <P ALIGN=JUSTIFY>Sample project:</P>
+                <P ALIGN=JUSTIFY><IMG ID="Bild2" HEIGHT=271 WIDTH=507 SRC="./sample.jpg" VSPACE=0 HSPACE=0 ALIGN="TOP" BORDER=0>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY><B><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><U>Phonebook entries</U></FONT></B></P>
+                <P ALIGN=JUSTIFY>
+                    <TABLE WIDTH="97%" BORDER=0 CELLSPACING=0 CELLPADDING=0 ALIGN=LEFT NOF=TE>
+                        <TR>
+                            <TD>
+                                <TABLE ID="Tabelle1" BORDER=0 CELLSPACING=3 CELLPADDING=1 WIDTH="100%">
+                                    <TR>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=LEFT><FONT SIZE="-1">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1">fRasGetAllEntries</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=LEFT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Retrieve a list of all dial-up connections on the machine</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1">fRASRenameEntry</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">renames an existing dial-up connection</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1">fRASDeleteEntry</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">deletes an existing dial-up connection</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1">fRASValidateEntryName</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">&nbsp;validating an entry</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1">fRasGetEntryProperties</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Returns detailed information about an existing entry</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1">fRasSetEntryProperties</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Set information for an existing entry / create new entry</FONT></P>
+                                        </TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=LEFT>&nbsp;</P>
+                <P ALIGN=LEFT>&nbsp;</P>
+                <P ALIGN=LEFT>&nbsp;</P>
+                <P ALIGN=LEFT><B><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><U>Dialing information</U></FONT><FONT SIZE="-1"> </FONT></B></P>
+                <P ALIGN=LEFT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">(</FONT>
+                    <TABLE WIDTH="95%" BORDER=0 CELLSPACING=0 CELLPADDING=0 ALIGN=LEFT NOF=TE>
+                        <TR>
+                            <TD>
+                                <TABLE ID="Tabelle2" BORDER=0 CELLSPACING=3 CELLPADDING=1 WIDTH="100%">
+                                    <TR>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRasGetEntryDialParams</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Get dial information for an existing entry</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRasSetEntryDialParams</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Set dial information for an existing entry</FONT></P>
+                                        </TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                    <FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Note: Phone numbers can only be set via SetEntryProperties!)</FONT>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY><B><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><U>Dialing</U></FONT></B></P>
+                <P ALIGN=JUSTIFY>
+                    <TABLE WIDTH="96%" BORDER=0 CELLSPACING=0 CELLPADDING=0 ALIGN=LEFT NOF=TE>
+                        <TR>
+                            <TD>
+                                <TABLE ID="Tabelle3" BORDER=0 CELLSPACING=3 CELLPADDING=1 WIDTH="100%">
+                                    <TR>
+                                        <TD WIDTH="49%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fASyncronousDial</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">dial a entry syncronous </FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="49%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fSyncronousDial</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">dial a entry syncronous </FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="49%" HEIGHT=19>
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRasHangUp</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">finish an existing dial-up connection</FONT></P>
+                                        </TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY><B><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><U>Connection information</U></FONT></B></P>
+                <P ALIGN=JUSTIFY>
+                    <TABLE WIDTH="96%" BORDER=0 CELLSPACING=0 CELLPADDING=0 ALIGN=LEFT NOF=TE>
+                        <TR>
+                            <TD>
+                                <TABLE ID="Tabelle5" BORDER=0 CELLSPACING=3 CELLPADDING=1 WIDTH="100%">
+                                    <TR>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRasGetConnectStatus</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Returning status information about an existing connection</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRasEnumConnections</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">enumerate all connections and fill tRasconn array </FONT></P>
+                                        </TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY><B><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><U>Projections</U></FONT></B></P>
+                <P ALIGN=JUSTIFY>
+                    <TABLE WIDTH="97%" BORDER=0 CELLSPACING=0 CELLPADDING=0 ALIGN=LEFT NOF=TE>
+                        <TR>
+                            <TD>
+                                <TABLE ID="Tabelle6" BORDER=0 CELLSPACING=3 CELLPADDING=1 WIDTH="100%">
+                                    <TR>
+                                        <TD WIDTH="49%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRasGetRASAMB</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">describes the result of a RAS Authentication Message Block</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="49%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRasGetRASPPPNBF</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">describes the result of a NetBeui projection</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="49%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRasGetRASPPPIPX</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">describes the result of a IIPX projection</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="49%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRasGetRASPPPIP</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">describes the result of a IP projection</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="49%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRasGetRASSLIP</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">describes the result of a serial line ip projection</FONT></P>
+                                        </TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY><B><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><U>Devices</U></FONT></B></P>
+                <P ALIGN=JUSTIFY>
+                    <TABLE WIDTH="96%" BORDER=0 CELLSPACING=0 CELLPADDING=0 ALIGN=LEFT NOF=TE>
+                        <TR>
+                            <TD>
+                                <TABLE ID="Tabelle7" BORDER=0 CELLSPACING=3 CELLPADDING=1 WIDTH="100%">
+                                    <TR>
+                                        <TD WIDTH="49%" HEIGHT=32>
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRasEnumDevices</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">returns a list of all RAS capable devices installed on the computer giving their name and devicetype</FONT></P>
+                                        </TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">&nbsp;</FONT><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><B><U>Windows dialogs</U></B></FONT></P>
+                <P ALIGN=JUSTIFY>
+                    <TABLE WIDTH="97%" BORDER=0 CELLSPACING=0 CELLPADDING=0 ALIGN=LEFT NOF=TE>
+                        <TR>
+                            <TD>
+                                <TABLE ID="Tabelle8" BORDER=0 CELLSPACING=3 CELLPADDING=1 WIDTH="100%">
+                                    <TR>
+                                        <TD WIDTH="49%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Procedure </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">sDLG_AddModem</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">displays the &quot;Add New Modem&quot; dialog</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="49%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Procedure </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">sDLG_ConfigModem</FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"> </FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">displays the &quot;Configure Modem&quot; dialog</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="49%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRASCreatePhoneBookEntryDialog</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">shows the &quot;create new entry&quot; dialog</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="49%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRASEditPhoneBookEntryDialog</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"></FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">shows the &quot;edit phonebook entry&quot; dialog</FONT></P>
+                                        </TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY><B><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><U>Other</U></FONT></B></P>
+                <P ALIGN=JUSTIFY>
+                    <TABLE WIDTH="96%" BORDER=0 CELLSPACING=0 CELLPADDING=0 ALIGN=LEFT NOF=TE>
+                        <TR>
+                            <TD>
+                                <TABLE ID="Tabelle9" BORDER=0 CELLSPACING=3 CELLPADDING=1 WIDTH="100%">
+                                    <TR>
+                                        <TD WIDTH="49%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRasErrorHandler</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">returns a RAS errorcode as plaintext</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="49%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fBytesToRasDialParams</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Transform a bytearray into a tRASDialParams structure</FONT></P>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD WIDTH="49%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Function </FONT><FONT COLOR="#FFFF00" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">fRasDialParamsToBytes</FONT></P>
+                                        </TD>
+                                        <TD WIDTH="50%">
+                                            <P ALIGN=JUSTIFY><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">transfer a tRasDialParams structure into a bytearray</FONT></P>
+                                        </TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                <P ALIGN=JUSTIFY>&nbsp;</P>
+                <P ALIGN=JUSTIFY><B><U>Stats</U></B></P>
+                <P ALIGN=JUSTIFY>There can be received a lot of statistics, like bytes transmitted or received etc. However, this is platform dependend and very time consuming to develop.&nbsp; So, I let this be for now, maybe if enough people ask for it, I will develop some routines for it.</P>
+                <P>&nbsp;</P>
+            </TD>
+        </TR>
+    </TABLE>
+</BODY>
+</HTML>
+ 
